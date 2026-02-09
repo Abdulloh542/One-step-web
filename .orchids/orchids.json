@@ -1,0 +1,8 @@
+{
+  "projectId": "488925a3-a960-4fee-b5ba-48f81ac8ebe2",
+  "createdAt": 1767187066357,
+  "version": "1.0",
+  "startupCommands": [
+    "bun install; bun run dev"
+  ]
+}

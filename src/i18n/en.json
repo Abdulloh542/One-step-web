@@ -1,0 +1,76 @@
+{
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "about": "About Us",
+        "contact": "Contact"
+    },
+    "hero": {
+        "subtitle": "We transform your brand into a market leader through professional marketing solutions, strategic approach, and creative ideas.",
+        "cta_primary": "Start Project",
+        "cta_secondary": "Our Services"
+    },
+    "services": {
+        "label": "WHAT WE DO?",
+        "title_1": "OUR",
+        "title_2": "SERVICES",
+        "description": "A complete set of modern and effective marketing tools for your business. We focus on results.",
+        "cta": "Choose Service",
+        "smm": {
+            "title": "SMM",
+            "description": "We work as a unified team, managing projects. Each task has a dedicated responsible person. Our staff is ready to give everything for every project! ;)"
+        },
+        "branding": {
+            "title": "BRANDING",
+            "description": "Complete development of individual style, logo, and visual identity for your company or business!"
+        },
+        "personal_brand": {
+            "title": "PERSONAL BRAND",
+            "description": "This is a special service that helps strengthen your personal image and confidence, becoming well-known in your field."
+        },
+        "targeting": {
+            "title": "TARGETING",
+            "description": "This is a digital marketing tool that helps deliver your product or service exactly to your target audience."
+        }
+    },
+    "contact": {
+        "label": "PARTNERSHIP",
+        "title_1": "GET IN",
+        "title_2": "TOUCH",
+        "description": "It's time to take your business to the next level. Our professional team is ready to help you.",
+        "phone_label": "PHONE NUMBER:",
+        "form": {
+            "name_label": "Name",
+            "name_placeholder": "John...",
+            "phone_label": "Your phone number",
+            "activity_label": "Type of business",
+            "activity_placeholder": "E.g.: Restaurant, Construction...",
+            "submit": "SUBMIT",
+            "search_country": "Search country...",
+            "popular": "Popular",
+            "all_countries": "All countries",
+            "country_not_found": "Country not found"
+        },
+        "success": {
+            "title": "Success!",
+            "message": "Your request has been successfully received. Our managers will contact you shortly.",
+            "close": "Close"
+        }
+    },
+    "about": {
+        "label": "WHO WE ARE?",
+        "title_1": "ABOUT OUR",
+        "title_2": "AGENCY",
+        "description": "We are a team of creative professionals dedicated to scaling your business. Our mission is to bridge the gap between brands and their target audiences through innovative digital strategies.",
+        "stats": {
+            "projects": "Projects",
+            "team": "Team",
+            "clients": "Clients"
+        }
+    },
+    "kpi": {
+        "leads": "Leads",
+        "conversion": "Conversion",
+        "roi": "ROI"
+    }
+}

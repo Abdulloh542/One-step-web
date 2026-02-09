@@ -1,0 +1,76 @@
+{
+    "nav": {
+        "home": "Bosh sahifa",
+        "services": "Xizmatlar",
+        "about": "Biz haqimizda",
+        "contact": "Bog'lanish"
+    },
+    "hero": {
+        "subtitle": "Professional marketing echimlari, strategik yondashuv va kreativ g'oyalar orqali brendingizni bozorda yetakchiga aylantiramiz.",
+        "cta_primary": "Loyiha boshlash",
+        "cta_secondary": "Xizmatlarimiz"
+    },
+    "services": {
+        "label": "NIMA QILA OLAMIZ?",
+        "title_1": "BIZNING",
+        "title_2": "XIZMATLAR",
+        "description": "Sizning biznesingiz uchun eng zamonaviy va samarali marketing vositalari to'plami. Biz natijaga e'tibor qaratamiz.",
+        "cta": "Xizmatni tanlash",
+        "smm": {
+            "title": "SMM",
+            "description": "Umumiy jamoa bo'lib, loyiha yurg'iziladi. Har bir ish uchun alohida mas'ul odam mavjud. Xodimlarimiz har bir loyiha uchun jonlarini fido qilishga tayyor! ;)"
+        },
+        "branding": {
+            "title": "BRANDING",
+            "description": "Kompaniya yoki biznesingiz uchun shaxsiy stilistika, logo, vizual aydentikasi to'liq qilinadi!"
+        },
+        "personal_brand": {
+            "title": "SHAXSIY BREND",
+            "description": "Bu sizning shaxsiy imidjingizni va ishonchingizni kuchaytirishga, o'z sohangizda taniqli bo'lishingizga yordam beradigan maxsus xizmatdir."
+        },
+        "targeting": {
+            "title": "TARGETING",
+            "description": "Bu raqamli marketing vositasi bo'lib, mahsulot yoki xizmatingizni aynan sizning maqsadli auditoriyangizga yetkazishga yordam beradi."
+        }
+    },
+    "contact": {
+        "label": "HAMKORLIK",
+        "title_1": "BIZ BILAN",
+        "title_2": "BOG'LANISH",
+        "description": "Biznesingizni yangi bosqichga olib chiqish vaqti keldi. Professional jamoamiz sizga yordam berishga tayyor.",
+        "phone_label": "TELEFON RAQAM:",
+        "form": {
+            "name_label": "Ism",
+            "name_placeholder": "Alisher...",
+            "phone_label": "Telefon raqamingiz",
+            "activity_label": "Faoliyat turingiz",
+            "activity_placeholder": "Masalan: Restoran, Qurilish...",
+            "submit": "YUBORISH",
+            "search_country": "Davlatni izlash...",
+            "popular": "Ommabop",
+            "all_countries": "Barcha davlatlar",
+            "country_not_found": "Davlat topilmadi"
+        },
+        "success": {
+            "title": "Muvaffaqiyatli!",
+            "message": "Sizning so'rovingiz muvaffaqiyatli qabul qilindi. Tez orada menejerlarimiz siz bilan bog'lanishadi.",
+            "close": "Yopish"
+        }
+    },
+    "about": {
+        "label": "BIZ KIMMIZ?",
+        "title_1": "AGENTLIGIMIZ",
+        "title_2": "HAQIDA",
+        "description": "Biz sizning biznesingizni kengaytirishga sodiq bo'lgan kreativ professionallar jamoasimiz. Bizning vazifamiz — innovatsion raqamli strategiyalar orqali brendlar va ularning maqsadli auditoriyasi o'rtasidagi bog'liqlikni ta'minlash.",
+        "stats": {
+            "projects": "Loyihalar",
+            "team": "Jamoa",
+            "clients": "Mijozlar"
+        }
+    },
+    "kpi": {
+        "leads": "Leads",
+        "conversion": "Conversion",
+        "roi": "ROI"
+    }
+}
