@@ -5,18 +5,28 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { I18nProvider } from "@/i18n";
 
 export const metadata: Metadata = {
-  title: "One Step Marketing | Raqamli Marketing Agentligi",
-  description: "One Step Marketing — biznesingizni onlayn rivojlantirish uchun zamonaviy raqamli marketing xizmatlari. SMM, target reklama, sayt yaratish va brending yechimlari.",
+  metadataBase: new URL("https://one-step-web-t746.vercel.app/"),
+  title: "One Step Marketing — Raqamli Marketing Agentligi",
+  description: "One Step Marketing — SMM, target reklama, brending va marketing strategiyalari orqali biznesingizni o’stiramiz.",
   openGraph: {
-    title: "One Step Marketing | Raqamli Marketing Agentligi",
-    description: "Biznesingizni yangi bosqichga olib chiqamiz. Professional marketing strategiyalar va natijaga yo‘naltirilgan yechimlar.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    title: "One Step Marketing — Raqamli Marketing Agentligi",
+    description: "One Step Marketing — SMM, target reklama, brending va marketing strategiyalari orqali biznesingizni o’stiramiz.",
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
     type: "website",
     url: "https://one-step-web-t746.vercel.app/",
   },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
+  },
   icons: {
-    icon: "/favicon.ico",
-  }
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
