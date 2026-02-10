@@ -7,13 +7,6 @@ import { I18nProvider } from "@/i18n";
 export const metadata: Metadata = {
   title: "One Step Marketing - Digital Marketing Agency",
   description: "Professional marketing solutions to make your brand a market leader",
-  icons: {
-    icon: [
-      { url: '/favicon.png', sizes: '32x32' },
-      { url: '/icon.png', sizes: '512x512' }
-    ],
-    apple: '/apple-icon.png',
-  }
 };
 
 export default function RootLayout({
