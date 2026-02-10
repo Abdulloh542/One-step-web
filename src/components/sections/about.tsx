@@ -3,96 +3,129 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n';
-import { Users, Rocket, Trophy } from 'lucide-react';
+import Image from 'next/image';
 
 const AboutSection: React.FC = () => {
     const { t } = useI18n();
 
     const stats = [
-        { icon: Rocket, value: "150+", label: t('about.stats.projects') },
-        { icon: Users, value: "25+", label: t('about.stats.team') },
-        { icon: Trophy, value: "100+", label: t('about.stats.clients') }
+        { value: "100+", label: t('about.stats.projects') },
+        { value: "50+", label: t('about.stats.clients') }
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 30, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+        }
+    };
+
     return (
-        <section id="about" className="bg-background py-20 md:py-40 px-6 relative overflow-hidden">
+        <section id="about" className="bg-background py-20 px-6 relative overflow-hidden transition-colors duration-500">
             <div className="container mx-auto max-w-7xl relative z-10">
-                <div className="grid lg:grid-cols-12 gap-16 items-center">
+                <motion.div
+                    className="grid lg:grid-cols-2 gap-16 items-center"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
 
+                    {/* Left: Image with Stats Card */}
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="lg:col-span-6"
+                        variants={itemVariants}
+                        className="relative"
                     >
-                        <span className="text-primary font-bold uppercase tracking-[0.4em] text-[10px] md:text-sm mb-6 block">
+                        <div className="relative aspect-square md:aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl group">
+                            <Image
+                                src="/office-team-hq.png"
+                                alt="One Step Agency Team"
+                                fill
+                                className="object-cover grayscale transition-transform duration-700 group-hover:scale-110"
+                                priority
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+                            {/* Stats Card (Glassmorphism) */}
+                            <motion.div
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.8, duration: 0.6 }}
+                                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[40px] p-6 md:p-8 flex justify-around items-center shadow-2xl"
+                            >
+                                {stats.map((stat, idx) => (
+                                    <React.Fragment key={idx}>
+                                        <div className="text-center px-4">
+                                            <div className="text-4xl md:text-5xl font-black text-primary mb-1">
+                                                {stat.value}
+                                            </div>
+                                            <div className="text-[10px] md:text-xs text-white/50 tracking-[0.2em] font-bold uppercase">
+                                                {stat.label}
+                                            </div>
+                                        </div>
+                                        {idx === 0 && (
+                                            <div className="w-[1px] h-12 bg-white/10" />
+                                        )}
+                                    </React.Fragment>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </motion.div>
+
+                    {/* Right: Text Content */}
+                    <div className="flex flex-col justify-center">
+                        <motion.span
+                            variants={itemVariants}
+                            className="text-primary font-bold uppercase tracking-[0.4em] text-xs md:text-sm mb-6 block"
+                        >
                             {t('about.label')}
-                        </span>
-                        <h2 className="text-foreground text-4xl sm:text-5xl md:text-8xl font-black leading-[0.85] tracking-tighter mb-8">
-                            {t('about.title_1')} <br />
-                            <span className="text-primary">{t('about.title_2')}</span>
-                        </h2>
-                        <p className="text-muted-foreground text-lg md:text-2xl font-light leading-relaxed mb-12">
-                            {t('about.description')}
-                        </p>
+                        </motion.span>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-                            {stats.map((stat, index) => (
-                                <div key={index} className="space-y-2">
-                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                        <stat.icon size={24} />
-                                    </div>
-                                    <h4 className="text-3xl font-black text-foreground">{stat.value}</h4>
-                                    <p className="text-sm text-muted-foreground uppercase tracking-widest">{stat.label}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-foreground text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-12 uppercase"
+                        >
+                            {t('about.title_1')}<br />
+                            <span className="text-foreground/10">{t('about.title_2')}</span>
+                        </motion.h2>
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="lg:col-span-6 relative"
-                    >
-                        <div className="relative aspect-square glass-card rounded-[50px] overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent mix-blend-overlay opacity-50" />
-                            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                                <motion.div
-                                    animate={{
-                                        rotate: [0, 360],
-                                        scale: [1, 1.1, 1]
-                                    }}
-                                    transition={{
-                                        rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                                        scale: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-                                    }}
-                                    className="w-[80%] aspect-square border-2 border-primary/20 rounded-full border-dashed"
-                                />
-                                <motion.div
-                                    animate={{
-                                        rotate: [360, 0],
-                                        scale: [1, 1.2, 1]
-                                    }}
-                                    transition={{
-                                        rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-                                        scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                                    }}
-                                    className="absolute w-[60%] aspect-square border-2 border-emerald-500/20 rounded-full border-dashed"
-                                />
-                                <div className="absolute w-32 h-32 bg-primary/20 blur-[60px] rounded-full animate-pulse" />
-                            </div>
-                        </div>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-muted-foreground text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-xl"
+                        >
+                            <span className="text-foreground font-bold">{t('about.title_1')}</span> — {t('about.description').replace('ONE STEP - ', '')}
+                        </motion.p>
 
-                        {/* Decorative elements */}
-                        <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 blur-[80px] rounded-full" />
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/5 blur-[80px] rounded-full" />
-                    </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="bg-foreground text-background px-12 py-5 rounded-full font-bold text-lg md:text-xl transition-all shadow-2xl shadow-foreground/5 hover:opacity-90"
+                            >
+                                {t('about.more')}
+                            </motion.button>
+                        </motion.div>
+                    </div>
 
-                </div>
+                </motion.div>
             </div>
+
+            {/* Background elements */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
         </section>
     );
 };

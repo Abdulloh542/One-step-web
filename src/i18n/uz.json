@@ -58,15 +58,15 @@
         }
     },
     "about": {
-        "label": "BIZ KIMMIZ?",
-        "title_1": "AGENTLIGIMIZ",
-        "title_2": "HAQIDA",
-        "description": "Biz sizning biznesingizni kengaytirishga sodiq bo'lgan kreativ professionallar jamoasimiz. Bizning vazifamiz — innovatsion raqamli strategiyalar orqali brendlar va ularning maqsadli auditoriyasi o'rtasidagi bog'liqlikni ta'minlash.",
+        "label": "BIZ HAQIMIZDA",
+        "title_1": "ONE STEP",
+        "title_2": "AGENTLIGI",
+        "description": "ONE STEP - Qadriyatlar ustida qurilgan tadbirkorlar manfaati. Shuningdek, ko'plab o'z sohasining ustalari va tajribaga ega xodimlar loyiha ustida ishlashadi. Agentligimizning asosiy maqsadi son emas, muhimi sifat!",
         "stats": {
-            "projects": "Loyihalar",
-            "team": "Jamoa",
-            "clients": "Mijozlar"
-        }
+            "projects": "LOYIHALAR",
+            "clients": "MIJOZLAR"
+        },
+        "more": "Batafsil ma'lumot"
     },
     "kpi": {
         "leads": "Leads",

@@ -58,15 +58,15 @@
         }
     },
     "about": {
-        "label": "WHO WE ARE?",
-        "title_1": "ABOUT OUR",
+        "label": "ABOUT US",
+        "title_1": "ONE STEP",
         "title_2": "AGENCY",
-        "description": "We are a team of creative professionals dedicated to scaling your business. Our mission is to bridge the gap between brands and their target audiences through innovative digital strategies.",
+        "description": "ONE STEP - Built on values for the benefit of entrepreneurs. Also, many masters of their field and experienced employees work on the project. Our agency's main goal is not quantity, but quality!",
         "stats": {
-            "projects": "Projects",
-            "team": "Team",
-            "clients": "Clients"
-        }
+            "projects": "PROJECTS",
+            "clients": "CLIENTS"
+        },
+        "more": "More info"
     },
     "kpi": {
         "leads": "Leads",
