@@ -30,17 +30,32 @@ export const Logo: React.FC<LogoProps> = ({ className }) => {
   const isDark = currentTheme === 'dark';
 
   return (
-    <div className={`flex items-center ${className}`}>
-      {/* Centered Logo Badge */}
-      <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+    <div className={`flex items-center gap-3 ${className}`}>
+      {/* Icon Part */}
+      <div className="relative w-12 h-12 md:w-14 md:h-14 flex-shrink-0">
         <Image
           src={isDark ? "/logo-light.png" : "/logo-dark.png"}
-          alt="One Step Logo"
+          alt="Icon"
           fill
           className="object-contain"
           priority
           unoptimized
         />
+      </div>
+
+      {/* Text Part */}
+      <div className="flex flex-col leading-none">
+        <div className="flex items-baseline gap-1">
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-black dark:text-white uppercase">
+            one
+          </span>
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-primary uppercase">
+            step
+          </span>
+        </div>
+        <span className="text-[7px] md:text-[8px] font-bold tracking-[0.2em] text-black/60 dark:text-white/60 uppercase mt-0.5 whitespace-nowrap">
+          DIGITAL MARKETING
+        </span>
       </div>
     </div>
   );
