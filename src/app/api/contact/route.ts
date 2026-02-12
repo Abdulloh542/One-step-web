@@ -47,31 +47,42 @@ export async function POST(req: Request) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
+                const payload = {
                     chat_id: CHAT_ID,
                     text: text.trim(),
                     parse_mode: 'HTML',
-                }),
-            }
-        );
+                };
 
-        const result = await response.json();
+                console.log('Telegram Payload:', JSON.stringify(payload));
 
-        if (!response.ok) {
-            console.error('Telegram API Error:', result);
-            return NextResponse.json(
-                { error: `Telegram Error: ${result.description || 'Noma\'lum xatolik'}` },
-                { status: response.status }
-            );
-        }
+                const response = await fetch(
+                    `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload),
+                    }
+                );
 
-        console.log('Telegram message sent successfully');
-        return NextResponse.json({ success: true });
-    } catch (error: any) {
-        console.error('CRITICAL API ERROR:', error.message || error);
+                const result = await response.json();
+
+                if(!response.ok) {
+                    console.error('Telegram API Error:', result);
         return NextResponse.json(
-            { error: error.message || 'Xabar yuborishda xatolik yuz berdi' },
-            { status: 500 }
+            { error: `Telegram: ${result.description || 'Noma\'lum xatolik'}` },
+            { status: response.status }
         );
     }
+
+        console.log('Telegram message sent successfully');
+    return NextResponse.json({ success: true });
+} catch (error: any) {
+    console.error('CRITICAL API ERROR:', error.stack || error.message || error);
+    return NextResponse.json(
+        { error: `Server Error: ${error.message || 'Xabar yuborishda xatolik'}` },
+        { status: 500 }
+    );
+}
 }

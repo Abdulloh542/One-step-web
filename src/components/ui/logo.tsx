@@ -34,7 +34,7 @@ export const Logo: React.FC<LogoProps> = ({ className }) => {
       {/* Icon Part */}
       <div className="relative w-12 h-12 md:w-14 md:h-14 flex-shrink-0">
         <Image
-          src={isDark ? "/logo-light.png" : "/logo-dark.png"}
+          src={isDark ? "/logo-dark.png" : "/logo-light.png"}
           alt="Icon"
           fill
           className="object-contain"

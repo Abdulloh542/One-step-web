@@ -141,8 +141,8 @@ const Navbar: React.FC = () => {
                 </a>
               </div>
 
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none w-48 h-48 rotate-12">
-                <Image src={logoImage} alt="" fill className="object-contain" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none w-48 h-48 rotate-12 flex items-center justify-center">
+                <Logo className="scale-150" />
               </div>
             </motion.div>
           </>
