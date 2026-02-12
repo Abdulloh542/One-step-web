@@ -240,7 +240,7 @@ const HeroSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-muted-foreground text-sm md:text-xl max-w-2xl mb-8 md:mb-12 font-light leading-relaxed">
+              className="text-muted-foreground text-base md:text-2xl max-w-2xl mb-8 md:mb-12 font-medium leading-relaxed">
               {t('hero.subtitle')}
             </motion.p>
 

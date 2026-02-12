@@ -29,7 +29,10 @@ const AboutSection: React.FC = () => {
         visible: {
             y: 0,
             opacity: 1,
-            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+            transition: {
+                duration: 0.8,
+                ease: "circOut"
+            }
         }
     };
 
@@ -99,12 +102,12 @@ const AboutSection: React.FC = () => {
                             className="text-foreground text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-12 uppercase"
                         >
                             {t('about.title_1')}<br />
-                            <span className="text-foreground/10">{t('about.title_2')}</span>
+                            <span className="text-black/20 dark:text-white/40">{t('about.title_2')}</span>
                         </motion.h2>
 
                         <motion.p
                             variants={itemVariants}
-                            className="text-muted-foreground text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-xl"
+                            className="text-muted-foreground text-xl md:text-2xl font-medium leading-relaxed mb-12 max-w-xl"
                         >
                             <span className="text-foreground font-bold">{t('about.title_1')}</span> — {t('about.description').replace('ONE STEP - ', '')}
                         </motion.p>

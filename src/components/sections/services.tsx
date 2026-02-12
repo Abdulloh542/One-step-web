@@ -12,21 +12,21 @@ const ServiceCard = ({ icon: Icon, titleKey, descKey }: {
   const { t } = useI18n();
 
   return (
-    <div className="group relative p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 overflow-hidden transition-all duration-300 hover:border-primary/40 cursor-pointer">
+    <div className="group relative p-8 md:p-14 rounded-[2.5rem] md:rounded-[4rem] bg-white dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 cursor-pointer">
       <div className="relative z-10">
-        <div className="mb-8 md:mb-12 w-16 h-16 md:w-24 md:h-24 rounded-3xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl group-hover:shadow-primary/40">
-          <Icon className="w-8 h-8 md:w-12 md:h-12 transition-transform duration-500 group-hover:scale-110" />
+        <div className="mb-10 md:mb-16 w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl group-hover:shadow-primary/40">
+          <Icon className="w-10 h-10 md:w-14 md:h-14 transition-transform duration-500 group-hover:scale-110" />
         </div>
 
-        <h3 className="text-foreground text-2xl md:text-3xl font-black mb-4 md:mb-6 tracking-tighter transition-colors duration-300 group-hover:text-primary">
+        <h3 className="text-foreground text-3xl md:text-4xl font-black mb-6 md:mb-8 tracking-tighter transition-colors duration-300 group-hover:text-primary leading-tight">
           {t(titleKey)}
         </h3>
 
-        <p className="text-muted-foreground leading-relaxed text-sm md:text-lg font-light mb-8 md:mb-12 group-hover:text-foreground transition-colors duration-300">
+        <p className="text-muted-foreground leading-relaxed text-base md:text-xl font-medium mb-10 md:mb-16 group-hover:text-foreground transition-colors duration-300">
           {t(descKey)}
         </p>
 
-        <div className="flex items-center gap-4 text-primary font-black text-xs md:text-base tracking-widest overflow-hidden h-6">
+        <div className="flex items-center gap-4 text-primary font-black text-xs md:text-lg tracking-widest overflow-hidden h-8">
           <div className="flex items-center gap-4 transition-all duration-500">
             <span className="uppercase">{t('services.cta')}</span>
             <div className="w-12 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />

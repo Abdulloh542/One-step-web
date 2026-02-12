@@ -74,12 +74,38 @@ const ContactSection: React.FC = () => {
     setPhoneNumber(cleaned);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowSuccess(true);
-    setName('');
-    setPhoneNumber('');
-    setActivity('');
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      const fullPhone = `${selectedCountry.dial} ${phoneNumber}`;
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          phone: fullPhone,
+          activity,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Yuborishda xatolik');
+
+      setShowSuccess(true);
+      setName('');
+      setPhoneNumber('');
+      setActivity('');
+    } catch (error) {
+      alert('Xabar yuborishda xatolik yuz berdi. Iltimos qaytadan urinib ko\'ring.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,7 +124,7 @@ const ContactSection: React.FC = () => {
                 <span className="text-primary">{t('contact.title_2')}</span>
               </h2>
 
-              <p className="text-muted-foreground text-lg md:text-xl font-light leading-relaxed mb-6 md:mb-16 max-w-md">
+              <p className="text-muted-foreground text-lg md:text-xl font-medium leading-relaxed mb-6 md:mb-16 max-w-md">
                 {t('contact.description')}
               </p>
 
@@ -106,11 +132,11 @@ const ContactSection: React.FC = () => {
                 <div className="group cursor-pointer">
                   <p className="text-[8px] text-muted-foreground/60 uppercase tracking-[0.2em] mb-1 md:mb-2 font-bold">{t('contact.phone_label')}</p>
                   <div className="flex flex-col gap-1 md:gap-2">
-                    <a href="tel:+998770401414" className="text-foreground text-lg md:text-3xl font-light hover:text-primary transition-all flex items-center gap-3 md:gap-4 group/link w-full">
+                    <a href="tel:+998770401414" className="text-foreground text-lg md:text-3xl font-medium hover:text-primary transition-all flex items-center gap-3 md:gap-4 group/link w-full">
                       +998 77 040 14 14
                       <ArrowRight className="w-4 h-4 md:w-6 md:h-6 opacity-0 -translate-x-4 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all text-primary" />
                     </a>
-                    <a href="tel:+998955011414" className="text-foreground text-lg md:text-3xl font-light hover:text-primary transition-all flex items-center gap-3 md:gap-4 group/link w-full">
+                    <a href="tel:+998955011414" className="text-foreground text-lg md:text-3xl font-medium hover:text-primary transition-all flex items-center gap-3 md:gap-4 group/link w-full">
                       +998 95 501 14 14
                       <ArrowRight className="w-4 h-4 md:w-6 md:h-6 opacity-0 -translate-x-4 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all text-primary" />
                     </a>
@@ -138,7 +164,7 @@ const ContactSection: React.FC = () => {
           </div>
 
           <div className="lg:col-span-8 lg:pl-8 xl:pl-16 w-full overflow-visible">
-            <div className="glass-card rounded-[32px] md:rounded-[50px] p-6 md:p-16 relative group border-border shadow-2xl shadow-black/[0.03] dark:shadow-none w-full lg:w-[calc(100%+80px)] xl:w-[calc(100%+120px)] ml-auto isolate overflow-visible">
+            <div className="glass-card rounded-[32px] md:rounded-[50px] p-8 md:p-20 relative group border border-black/5 dark:border-white/10 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-3xl shadow-2xl shadow-black/[0.05] dark:shadow-none w-full lg:w-[calc(100%+80px)] xl:w-[calc(100%+120px)] ml-auto isolate overflow-visible">
               <div className="absolute inset-0 overflow-hidden rounded-[32px] md:rounded-[50px] pointer-events-none z-[-1]">
                 <div className="absolute top-0 right-0 w-[120%] h-80 bg-primary/10 blur-[100px] rounded-full" />
               </div>
@@ -151,7 +177,7 @@ const ContactSection: React.FC = () => {
                     value={name}
                     onChange={handleNameChange}
                     placeholder={t('contact.form.name_placeholder')}
-                    className="w-full bg-transparent border-b border-border py-3 md:py-4 text-foreground text-xl md:text-2xl font-light outline-none focus:border-primary transition-all placeholder:text-muted-foreground/40"
+                    className="w-full bg-transparent border-b border-border py-4 md:py-6 text-foreground text-xl md:text-3xl font-medium outline-none focus:border-primary transition-all placeholder:text-muted-foreground/30"
                     required
                     autoComplete="name"
                   />
@@ -223,7 +249,7 @@ const ContactSection: React.FC = () => {
                       value={phoneNumber}
                       onChange={handlePhoneChange}
                       placeholder={selectedCountry.placeholder}
-                      className="flex-1 bg-transparent py-2 md:py-4 pl-3 text-foreground text-base md:text-2xl font-light outline-none placeholder:text-muted-foreground/40"
+                      className="flex-1 bg-transparent py-3 md:py-6 pl-3 text-foreground text-xl md:text-3xl font-medium outline-none placeholder:text-muted-foreground/30"
                       required
                       autoComplete="tel"
                     />
@@ -237,7 +263,7 @@ const ContactSection: React.FC = () => {
                     value={activity}
                     onChange={(e) => setActivity(e.target.value)}
                     placeholder={t('contact.form.activity_placeholder')}
-                    className="w-full bg-transparent border-b border-border py-3 md:py-4 text-foreground text-xl md:text-2xl font-light outline-none focus:border-primary transition-all placeholder:text-muted-foreground/40"
+                    className="w-full bg-transparent border-b border-border py-4 md:py-6 text-foreground text-xl md:text-3xl font-medium outline-none focus:border-primary transition-all placeholder:text-muted-foreground/30"
                     required
                   />
                 </div>
@@ -245,9 +271,10 @@ const ContactSection: React.FC = () => {
                 <div className="md:col-span-2 pt-4 md:pt-10">
                   <button
                     type="submit"
-                    className="group w-full md:w-auto px-8 md:px-16 py-3 md:py-6 bg-foreground text-background font-black rounded-full flex items-center justify-center gap-3 hover:bg-primary hover:text-white transition-all duration-300 text-xs md:text-base shadow-xl hover:shadow-primary/20">
-                    {t('contact.form.submit')}
-                    <Send className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    disabled={isSubmitting}
+                    className="group w-full md:w-auto px-8 md:px-16 py-3 md:py-6 bg-foreground text-background font-black rounded-full flex items-center justify-center gap-3 hover:bg-primary hover:text-white transition-all duration-300 text-xs md:text-base shadow-xl hover:shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                    {isSubmitting ? 'YUBORILMOQDA...' : t('contact.form.submit')}
+                    {!isSubmitting && <Send className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
                   </button>
                 </div>
               </form>
@@ -286,7 +313,7 @@ const ContactSection: React.FC = () => {
                     {t('contact.success.title')}
                   </h3>
 
-                  <p className="text-muted-foreground mb-10 font-light text-base md:text-lg leading-relaxed max-w-sm">
+                  <p className="text-muted-foreground mb-10 font-medium text-lg md:text-xl leading-relaxed max-w-sm">
                     {t('contact.success.message')}
                   </p>
 
