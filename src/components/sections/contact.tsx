@@ -96,8 +96,17 @@ const ContactSection: React.FC = () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Xabar yuborishda xatolik yuz berdi');
+        let errorMessage = 'Yuborishda xatolik yuz berdi';
+        const contentType = response.headers.get('content-type');
+
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } else {
+          errorMessage = await response.text() || response.statusText || errorMessage;
+        }
+
+        throw new Error(errorMessage);
       }
 
       setShowSuccess(true);
