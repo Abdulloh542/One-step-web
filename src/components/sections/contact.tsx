@@ -95,14 +95,18 @@ const ContactSection: React.FC = () => {
         }),
       });
 
-      if (!response.ok) throw new Error('Yuborishda xatolik');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Xabar yuborishda xatolik yuz berdi');
+      }
 
       setShowSuccess(true);
       setName('');
       setPhoneNumber('');
       setActivity('');
-    } catch (error) {
-      alert('Xabar yuborishda xatolik yuz berdi. Iltimos qaytadan urinib ko\'ring.');
+    } catch (error: any) {
+      console.error('Submission error:', error);
+      alert(error.message || 'Xabar yuborishda xatolik yuz berdi. Iltimos qaytadan urinib ko\'ring.');
     } finally {
       setIsSubmitting(false);
     }
@@ -164,28 +168,28 @@ const ContactSection: React.FC = () => {
           </div>
 
           <div className="lg:col-span-8 lg:pl-8 xl:pl-16 w-full overflow-visible">
-            <div className="glass-card rounded-[32px] md:rounded-[50px] p-8 md:p-20 relative group border border-black/5 dark:border-white/10 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-3xl shadow-2xl shadow-black/[0.05] dark:shadow-none w-full lg:w-[calc(100%+80px)] xl:w-[calc(100%+120px)] ml-auto isolate overflow-visible">
+            <div className="glass-card rounded-[32px] md:rounded-[50px] p-8 md:p-20 relative group border-2 border-primary/20 bg-white/5 dark:bg-black/40 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] w-full lg:w-[calc(100%+80px)] xl:w-[calc(100%+120px)] ml-auto isolate overflow-visible">
               <div className="absolute inset-0 overflow-hidden rounded-[32px] md:rounded-[50px] pointer-events-none z-[-1]">
-                <div className="absolute top-0 right-0 w-[120%] h-80 bg-primary/10 blur-[100px] rounded-full" />
+                <div className="absolute top-0 right-0 w-[120%] h-80 bg-primary/20 blur-[100px] rounded-full" />
               </div>
 
               <form className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12" onSubmit={handleSubmit}>
                 <div className="space-y-1 col-span-1 group/input">
-                  <p className="text-[10px] md:text-sm text-primary font-black uppercase tracking-[0.3em] mb-1 md:mb-4">{t('contact.form.name_label')}</p>
+                  <p className="text-sm md:text-base text-primary font-black uppercase tracking-[0.2em] mb-2 md:mb-4">{t('contact.form.name_label')}</p>
                   <input
                     type="text"
                     value={name}
                     onChange={handleNameChange}
                     placeholder={t('contact.form.name_placeholder')}
-                    className="w-full bg-transparent border-b border-border py-4 md:py-6 text-foreground text-xl md:text-3xl font-medium outline-none focus:border-primary transition-all placeholder:text-muted-foreground/30"
+                    className="w-full bg-transparent border-b-2 border-border py-4 md:py-6 text-foreground text-xl md:text-3xl font-medium outline-none focus:border-primary transition-all placeholder:text-muted-foreground/30"
                     required
                     autoComplete="name"
                   />
                 </div>
 
                 <div className="space-y-1 col-span-1 group/input">
-                  <p className="text-[10px] md:text-sm text-primary font-black uppercase tracking-[0.3em] mb-1 md:mb-4">{t('contact.form.phone_label')}</p>
-                  <div className="relative flex items-center border-b border-border focus-within:border-primary transition-all" ref={dropdownRef}>
+                  <p className="text-sm md:text-base text-primary font-black uppercase tracking-[0.2em] mb-2 md:mb-4">{t('contact.form.phone_label')}</p>
+                  <div className="relative flex items-center border-b-2 border-border focus-within:border-primary transition-all" ref={dropdownRef}>
                     <button
                       type="button"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -249,7 +253,7 @@ const ContactSection: React.FC = () => {
                       value={phoneNumber}
                       onChange={handlePhoneChange}
                       placeholder={selectedCountry.placeholder}
-                      className="flex-1 bg-transparent py-3 md:py-6 pl-3 text-foreground text-xl md:text-3xl font-medium outline-none placeholder:text-muted-foreground/30"
+                      className="flex-1 bg-transparent py-3 md:py-6 pl-3 text-foreground text-xl md:text-3xl font-bold outline-none placeholder:text-muted-foreground/30"
                       required
                       autoComplete="tel"
                     />
@@ -257,13 +261,13 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="space-y-1 md:col-span-2 group/input">
-                  <p className="text-[10px] md:text-sm text-primary font-black uppercase tracking-[0.3em] mb-1 md:mb-4">{t('contact.form.activity_label')}</p>
+                  <p className="text-sm md:text-base text-primary font-black uppercase tracking-[0.2em] mb-2 md:mb-4">{t('contact.form.activity_label')}</p>
                   <input
                     type="text"
                     value={activity}
                     onChange={(e) => setActivity(e.target.value)}
                     placeholder={t('contact.form.activity_placeholder')}
-                    className="w-full bg-transparent border-b border-border py-4 md:py-6 text-foreground text-xl md:text-3xl font-medium outline-none focus:border-primary transition-all placeholder:text-muted-foreground/30"
+                    className="w-full bg-transparent border-b-2 border-border py-4 md:py-6 text-foreground text-xl md:text-3xl font-medium outline-none focus:border-primary transition-all placeholder:text-muted-foreground/30"
                     required
                   />
                 </div>
@@ -305,9 +309,19 @@ const ContactSection: React.FC = () => {
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/20 blur-[50px] rounded-full" />
 
                 <div className="relative z-10 flex flex-col items-center text-center">
-                  <div className="w-24 h-24 md:w-28 md:h-28 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-green-500/30">
+                  <motion.div
+                    initial={{ scale: 0, rotate: -45 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      type: "spring",
+                      damping: 12,
+                      stiffness: 200,
+                      delay: 0.2
+                    }}
+                    className="w-24 h-24 md:w-28 md:h-28 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-green-500/30"
+                  >
                     <CheckCircle className="w-12 h-12 md:w-14 md:h-14 text-white" strokeWidth={2.5} />
-                  </div>
+                  </motion.div>
 
                   <h3 className="text-3xl md:text-4xl font-black uppercase mb-4 text-black dark:text-white tracking-tight">
                     {t('contact.success.title')}

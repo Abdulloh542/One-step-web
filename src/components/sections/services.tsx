@@ -12,7 +12,7 @@ const ServiceCard = ({ icon: Icon, titleKey, descKey }: {
   const { t } = useI18n();
 
   return (
-    <div className="group relative p-8 md:p-14 rounded-[2.5rem] md:rounded-[4rem] bg-white dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 cursor-pointer">
+    <div className="group relative p-10 md:p-16 rounded-[3rem] md:rounded-[5rem] bg-white dark:bg-zinc-900/50 border-2 border-black/5 dark:border-white/5 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)] cursor-pointer">
       <div className="relative z-10">
         <div className="mb-10 md:mb-16 w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-2xl group-hover:shadow-primary/40">
           <Icon className="w-10 h-10 md:w-14 md:h-14 transition-transform duration-500 group-hover:scale-110" />
@@ -22,7 +22,7 @@ const ServiceCard = ({ icon: Icon, titleKey, descKey }: {
           {t(titleKey)}
         </h3>
 
-        <p className="text-muted-foreground leading-relaxed text-base md:text-xl font-medium mb-10 md:mb-16 group-hover:text-foreground transition-colors duration-300">
+        <p className="text-muted-foreground leading-relaxed text-lg md:text-2xl font-medium mb-12 md:mb-20 group-hover:text-foreground transition-colors duration-300">
           {t(descKey)}
         </p>
 
@@ -65,7 +65,7 @@ export default function ServicesSection() {
           </div>
 
           <div className="lg:max-w-xl">
-            <p className="text-muted-foreground text-lg md:text-2xl font-light leading-relaxed">
+            <p className="text-muted-foreground text-xl md:text-3xl font-medium leading-relaxed">
               {t('services.description')}
             </p>
           </div>

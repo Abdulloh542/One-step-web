@@ -24,7 +24,7 @@ const AboutSection: React.FC = () => {
         }
     };
 
-    const itemVariants = {
+    const itemVariants: any = {
         hidden: { y: 30, opacity: 0 },
         visible: {
             y: 0,
@@ -102,12 +102,12 @@ const AboutSection: React.FC = () => {
                             className="text-foreground text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-12 uppercase"
                         >
                             {t('about.title_1')}<br />
-                            <span className="text-black/20 dark:text-white/40">{t('about.title_2')}</span>
+                            <span className="text-black/30 dark:text-white/60">{t('about.title_2')}</span>
                         </motion.h2>
 
                         <motion.p
                             variants={itemVariants}
-                            className="text-muted-foreground text-xl md:text-2xl font-medium leading-relaxed mb-12 max-w-xl"
+                            className="text-muted-foreground text-2xl md:text-3xl font-medium leading-relaxed mb-12 max-w-xl"
                         >
                             <span className="text-foreground font-bold">{t('about.title_1')}</span> — {t('about.description').replace('ONE STEP - ', '')}
                         </motion.p>

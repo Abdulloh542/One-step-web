@@ -3,6 +3,16 @@ import { NextResponse } from 'next/server';
 const BOT_TOKEN = '7586808462:AAFdOHCaZFvTD3KBjYz5ZvIH2LWpcVWbMK8';
 const CHAT_ID = '-4757107595';
 
+const escapeHtml = (str: string) => {
+    return str.replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[m] || m);
+};
+
 export async function POST(req: Request) {
     try {
         const body = await req.json();
@@ -15,15 +25,20 @@ export async function POST(req: Request) {
             );
         }
 
+        const safeName = escapeHtml(name);
+        const safePhone = escapeHtml(phone);
+        const safeActivity = escapeHtml(activity);
+
         const text = `
-🆕 **Yangi murojaat!**
+<b>🆕 Yangi murojaat!</b>
 
-👤 **Ism:** ${name}
-📞 **Telefon:** ${phone}
-💼 **Faoliyat turi:** ${activity}
+👤 <b>Ism:</b> ${safeName}
+📞 <b>Telefon:</b> ${safePhone}
+💼 <b>Faoliyat turi:</b> ${safeActivity}
 
-🌐 *one-step-web.vercel.app*
-    `;
+<i>🌐 one-step-web.vercel.app</i>`;
+
+        console.log('Attempting to send lead to Telegram...', { CHAT_ID });
 
         const response = await fetch(
             `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
@@ -34,23 +49,28 @@ export async function POST(req: Request) {
                 },
                 body: JSON.stringify({
                     chat_id: CHAT_ID,
-                    text: text,
-                    parse_mode: 'Markdown',
+                    text: text.trim(),
+                    parse_mode: 'HTML',
                 }),
             }
         );
 
+        const result = await response.json();
+
         if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Telegram API Error:', errorData);
-            throw new Error('Telegramga xabar yuborishda xatolik yuz berdi');
+            console.error('Telegram API Error:', result);
+            return NextResponse.json(
+                { error: `Telegram Error: ${result.description || 'Noma\'lum xatolik'}` },
+                { status: response.status }
+            );
         }
 
+        console.log('Telegram message sent successfully');
         return NextResponse.json({ success: true });
-    } catch (error) {
-        console.error('Contact API Error:', error);
+    } catch (error: any) {
+        console.error('CRITICAL API ERROR:', error.message || error);
         return NextResponse.json(
-            { error: 'Xabar yuborishda xatolik yuz berdi. Keyinroq qayta urinib ko\'ring.' },
+            { error: error.message || 'Xabar yuborishda xatolik yuz berdi' },
             { status: 500 }
         );
     }

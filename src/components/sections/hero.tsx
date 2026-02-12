@@ -209,7 +209,7 @@ const HeroSection: React.FC = () => {
   const { t } = useI18n();
 
   return (
-    <section className="relative min-h-[85svh] md:min-h-[100svh] w-full overflow-hidden bg-background flex items-center justify-center pt-32 md:pt-40 transition-colors duration-500">
+    <section className="relative min-h-[85svh] md:min-h-[100svh] w-full overflow-hidden bg-background flex items-center justify-center pt-32 md:pt-48 pb-20 transition-colors duration-500">
       <div className="absolute top-[-10%] right-[-5%] w-[60%] aspect-square bg-primary/10 blur-[120px] rounded-full z-0" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[40%] aspect-square bg-primary/5 blur-[100px] rounded-full z-0" />
 
@@ -240,7 +240,7 @@ const HeroSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-muted-foreground text-base md:text-2xl max-w-2xl mb-8 md:mb-12 font-medium leading-relaxed">
+              className="text-muted-foreground text-lg md:text-3xl max-w-2xl mb-10 md:mb-16 font-medium leading-relaxed">
               {t('hero.subtitle')}
             </motion.p>
 

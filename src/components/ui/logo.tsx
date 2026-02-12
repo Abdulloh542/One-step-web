@@ -35,10 +35,11 @@ export const Logo: React.FC<LogoProps> = ({ className }) => {
       <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
         <Image
           src={isDark ? "/logo-dark.png" : "/logo-light.png"}
-          alt="One Step Logo"
+          alt="Logo"
           fill
           className="object-contain"
           priority
+          unoptimized
         />
       </div>
 
